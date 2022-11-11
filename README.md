@@ -1,2 +1,2 @@
 # works
-all in one repo for some generative system
+all in one repo for some generative systems
