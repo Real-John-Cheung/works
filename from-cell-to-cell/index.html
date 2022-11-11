@@ -32,10 +32,10 @@
         container.addEventListener('dblclick', (event) => {
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                 try {
-                    container.firstElementChild.requestFullscreen();
+                    container.requestFullscreen();
                 } catch (e) {
                     try {
-                        container.firstElementChild.webkitRequestFullscreen();
+                        container.webkitRequestFullscreen();
                     } catch (err) {
                         console.error("fullScreenNotSupported");
                     }
