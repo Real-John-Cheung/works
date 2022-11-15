@@ -15,7 +15,7 @@ let sketch = s => {
             this.cy = center.y;
             this.radius = size;
 
-            this.outerVertices = new Array(6);
+            this.outerVertices = new Array(8);
             // [mag0.5~1, angle -PI/10~PI/10degree] => [noiseP0, noiseP1];
             let tem0 = Math.random() * 14400;
             let tem1 = Math.random() * 14400;
@@ -30,7 +30,7 @@ let sketch = s => {
             this.outerVertices.forEach((v, i) => {
                 let mag = 0.9 + s.noise(v[0]) * 0.1;
                 let beta = -(Math.PI / 15) + s.noise(v[1]) * (Math.PI / 7.5);
-                let rv = p5.Vector.fromAngle(i * (Math.PI / 3) + beta, this.radius * mag);
+                let rv = p5.Vector.fromAngle(i * (Math.PI / 4) + beta, this.radius * mag);
                 cooked.push(new p5.Vector(this.cx + rv.x, this.cy + rv.y));
             })
             return cooked;
@@ -117,14 +117,6 @@ let sketch = s => {
         }
 
         renderChildren() {
-            //todo
-            // s.beginShape();
-            // for (const p of this.controlPoints) {
-            //     s.vertex(p.x, p.y);
-            // }
-            // s.endShape(s.CLOSE);
-            let cvm1 = 100 / (Math.pow(this.depth, 2) + 1);
-            let cvm2 = 1000 / (Math.pow(this.depth, 3) + 1);
             for (let i = 0; i < this.sideNo; i++) {
                 let j = (i - 1 + this.sideNo) % this.sideNo
                 if (f1) {
@@ -143,7 +135,8 @@ let sketch = s => {
 
         setInBetweenPoint(target, sourceA, sourceB, ratio) {
             try {
-                target.set(sourceA.x * ratio + sourceB.x * (1 - ratio), sourceA.y * ratio + sourceB.y * (1 - ratio));
+                target.x = sourceA.x * ratio + sourceB.x * (1 - ratio);
+                target.y = sourceA.y * ratio + sourceB.y * (1 - ratio);
             } catch (e) {
                 console.error(e, target, ratio);
             }
@@ -155,7 +148,8 @@ let sketch = s => {
                 sumX += p.x;
                 sumY += p.y;
             }
-            target.set(sumX / vertices.length, sumY / vertices.length);
+            target.x = sumX / vertices.length;
+            target.y = sumY / vertices.length;
         }
     }
 
@@ -165,25 +159,25 @@ let sketch = s => {
     let f1;
 
     s.setup = function () {
-        canvas = s.createCanvas(500, 500);
+        canvas = s.createCanvas(400, 400);
         s.noFill();
         s.stroke(50);
         s.strokeWeight(0.2);
-        // s.frameRate(12)
+        //s.frameRate(12)
         s.background(250);
         s.angleMode(s.RADIANS);
         applyScalling(div, canvas.canvas);
-        s.bezierDetail(10);
+        s.bezierDetail(5);
         f1 = canvas.parent().classList.contains("f1");
         hex = new Hex({ x: s.width / 2, y: s.height / 2 }, s.width / 2);
-        poly = new Polygon(0, 4, 6);
+        poly = new Polygon(0, 4, 8);
         poly.update(hex.get(), noiseP);
         poly.display();
     }
 
     s.draw = function () {
         s.background(250);
-        // s.text(s.frameRate(),20,20)
+        //s.text(s.frameRate(),20,20)
         noiseP += 0.01;
         hex.update();
         poly.update(hex.get(), noiseP);
