@@ -70,9 +70,11 @@
                     }
                 }
             }
-            if (ok && inverted) {
+        }, false);
+        document.onfullscreenchange = () => {
+            if (inverted) {
                 document.getElementsByClassName("sketchcontainer")[0].classList.toggle("invert");
             }
-        }, false);
+        }
     </script>
 </body>
