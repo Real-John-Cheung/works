@@ -8,6 +8,10 @@ const applyScalling = function (parent, children) {
     children.style.transform = `scale(${scaleAmtX}, ${scaleAmtY})`;
 }
 
+const fromAngle = function(ang, mag) {
+    return ({x: Math.cos(ang) * mag, y: Math.sin(ang) * mag})
+}
+
 let sketch = s => {
     class Hex {
         constructor(center, size) {
@@ -29,9 +33,9 @@ let sketch = s => {
             let cooked = [];
             this.outerVertices.forEach((v, i) => {
                 let mag = 0.9 + s.noise(v[0]) * 0.1;
-                let beta = -(Math.PI / 15) + s.noise(v[1]) * (Math.PI / 7.5);
-                let rv = p5.Vector.fromAngle(i * (Math.PI / 4) + beta, this.radius * mag);
-                cooked.push(new p5.Vector(this.cx + rv.x, this.cy + rv.y));
+                let beta = -(Math.PI / 20) + s.noise(v[1]) * (Math.PI / 10);
+                let rv = fromAngle(i * (Math.PI / 4) + beta, this.radius * mag);
+                cooked.push({ x: this.cx + rv.x, y: this.cy + rv.y});
             })
             return cooked;
         }
@@ -52,17 +56,17 @@ let sketch = s => {
             this.sideNo = noOfSides;
             this.outerVertices = new Array(this.sideNo);
             for (let i = 0; i < this.outerVertices.length; ++i) {
-                this.outerVertices[i] = new p5.Vector(0, 0);
+                this.outerVertices[i] = {x:0,y:0};
             }
             this.outerEdgesMiddle = new Array(this.sideNo);
             for (let i = 0; i < this.outerEdgesMiddle.length; ++i) {
-                this.outerEdgesMiddle[i] = new p5.Vector(0, 0);
+                this.outerEdgesMiddle[i] = {x:0,y:0};
             }
             this.controlPoints = new Array(this.sideNo);
             for (let i = 0; i < this.controlPoints.length; ++i) {
-                this.controlPoints[i] = new p5.Vector(0, 0);
+                this.controlPoints[i] = {x:0,y:0};
             }
-            this.innerCenter = new p5.Vector(0, 0);
+            this.innerCenter = {x:0,y:0};
             if (this.depth < this.maxDepth) {
                 this.children = new Array(this.sideNo + 1);
                 for (let i = 0; i < this.sideNo; ++i) {
