@@ -35,6 +35,8 @@ html {
     width: 100vmin;
     height: 100vmin;
     /* background-color: black; */
+    max-width: 1000px;
+    max-height: 1000px;
 }
 
 .sketchcontainer canvas {
