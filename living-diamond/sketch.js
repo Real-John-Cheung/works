@@ -137,9 +137,9 @@ let sketch = s => {
                 // s.line(this.outerEdgesMiddle[i].x, this.outerEdgesMiddle[i].y, this.controlPoints[i].x, this.controlPoints[i].y);
                 mid = { x: (this.outerEdgesMiddle[i].x + this.controlPoints[i].x) / 2, y: (this.outerEdgesMiddle[i].y + this.controlPoints[i].y) / 2 }
                 lesq = (this.outerEdgesMiddle[i].x - this.controlPoints[i].x) * (this.outerEdgesMiddle[i].x - this.controlPoints[i].x) + (this.outerEdgesMiddle[i].y - this.controlPoints[i].y) * (this.outerEdgesMiddle[i].y - this.controlPoints[i].y)
-                //mfa = s.map(lesq, 0, 10000, 1, 0.3, true);
+                mfa = s.map(lesq, 0, 10000, 1, 0.3, true);
                 k = Math.atan2(this.controlPoints[i].y - this.outerEdgesMiddle[i].y, this.controlPoints[i].x - this.outerEdgesMiddle[i].x);
-               // k += (s.noise(s.frameCount * fac) - 0.5) * Math.PI * 2
+                k += (s.noise(s.frameCount * fac) - 0.5) * Math.PI * 2
                 k += Math.PI / 2;
                 cv = p5.Vector.fromAngle(k, cvm1 * mfa);
                 cvA = { x: mid.x + cv.x, y: mid.y + cv.y };
@@ -152,9 +152,9 @@ let sketch = s => {
                 // s.line(this.controlPoints[i].x, this.controlPoints[i].y, this.controlPoints[j].x, this.controlPoints[j].y);
                 mid = { x: (this.controlPoints[i].x + this.controlPoints[j].x) / 2, y: (this.controlPoints[i].y + this.controlPoints[j].y) / 2 };
                 lesq = (this.controlPoints[i].x - this.controlPoints[j].x) * (this.controlPoints[i].x - this.controlPoints[j].x) + (this.controlPoints[i].y - this.controlPoints[j].y) * (this.controlPoints[i].y - this.controlPoints[j].y);
-                //mfa = s.map(lesq, 0, 10000, 1, 0, true);
+                mfa = s.map(lesq, 0, 10000, 1, 0, true);
                 k = Math.atan2(this.controlPoints[j].y - this.controlPoints[i].y, this.controlPoints[j].x - this.controlPoints[i].x);
-               // k += (s.noise(s.frameCount * fac) - 0.5) * Math.PI * 2
+                k += (s.noise(s.frameCount * fac) - 0.5) * Math.PI * 2
                 k += Math.PI / 2;
                 cv = p5.Vector.fromAngle(k, cvm1);
                 cvA = { x: mid.x + cv.x, y: mid.y + cv.y };
