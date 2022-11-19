@@ -121,7 +121,7 @@ let sketch = s => {
         }
 
         renderChildren() {
-            const fac = 0.02;
+            const fac = 0.018;
             //todo
             // s.beginShape();
             // for (const p of this.controlPoints) {
