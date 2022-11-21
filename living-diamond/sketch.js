@@ -204,7 +204,7 @@ let sketch = s => {
         s.background(250);
         s.angleMode(s.RADIANS);
         applyScalling(div, canvas.canvas);
-        s.bezierDetail(1);
+        s.bezierDetail(5);
         f1 = canvas.parent().classList.contains("f1");
         dia = new Dia({ x: s.width / 2, y: s.height / 2 }, s.width / 2);
         poly = new Polygon(0, 4, 10);
