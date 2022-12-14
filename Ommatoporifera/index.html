@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ommatoporifera</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"
+        integrity="sha512-rCZdHNB0AePry6kAnKAVFMRfWPmUXSo+/vlGtrOUvhsxD0Punm/xWbEh+8vppPIOzKB9xnk42yCRZ5MD/jvvjQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"
+        integrity="sha512-5T245ZTH0m0RfONiFm2NF0zcYcmAuNzcGyPSQ18j8Bs5Pbfhp5HP1hosrR8XRt5M3kSRqzjNMYpm2+it/AUX/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./sketch.js"></script>
+    <script src="./main.js"></script>
+</head>
+
+<body class="invert">
+    <div class="sketchcontainer">
+        <div class="row">
+            <!-- <div class="subC r270"></div> -->
+            <!-- <div class="subC f0"></div> -->
+            <div class="subC"></div>
+        </div>
+    </div>
+    <div id="shadow" class="hidden" onclick="hideAbout()"></div>
+    <div id="about" class="hidden">
+        <div>
+            <h1>Ommatoporifera</h1>
+            <p><a href="https://johncheung.art">John C</a>, 2022</p>
+            <p>Click <a href="./code.html" target="_blank">here</a> for the code.</p>
+        </div>
+    </div>
+    <div id="infoIcon" onclick="showAbout()">?</div>
+    <div id="invertIcon" onclick="invertColor()"> &lt;-></div>
+    <script>
+        let inverted = true;
+        const container = window.document.getElementsByClassName('sketchcontainer')[0];
+        const subcs = window.document.getElementsByClassName('subC');
+        for (const c of subcs) {
+            new p5(sketch, c)
+        }
+        document.onfullscreenchange = () => {
+            if (inverted) {
+                document.getElementsByClassName("sketchcontainer")[0].classList.toggle("invert");
+            }
+        }
+        container.addEventListener('dblclick', (event) => {
+            let ok = true
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                try {
+                    container.requestFullscreen();
+                } catch (e) {
+                    try {
+                        container.webkitRequestFullscreen();
+                    } catch (err) {
+                        console.error("fullScreenNotSupported");
+                        ok = false;
+                    }
+                }
+            } else if (document.exitFullscreen || document.webkitExitFullscreen) {
+                try {
+                    document.exitFullscreen();
+                } catch (e) {
+                    try {
+                        document.webkitExitFullscreen();
+                    } catch {
+                        console.error("unknownError");
+                        ok = false
+                    }
+                }
+            }
+        }, false);
+    </script>
+</body>
