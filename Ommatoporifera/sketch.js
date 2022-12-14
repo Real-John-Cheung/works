@@ -46,18 +46,18 @@ let sketch = s => {
 
         inn.forEach((p, i) => {
             //s.line(p[0], p[1], inn[i][0], inn[i][1]);
-            // for (let k = 0; k < 1; k++) {
-            //     s.line(p[0], p[1], cor[((i - (k + 1)) + (inn.length)) % inn.length][0], cor[((i - (k + 1)) + (inn.length)) % inn.length][1]);
-            //     s.line(p[0], p[1], cor[((i + (k + 1)) + (inn.length)) % inn.length][0], cor[((i + (k + 1)) + (inn.length)) % inn.length][1]);
-            // }
-            let im1 = i - 1 < 0 ? inn.length - 1 : i - 1;
-            let ip1 = i + 1 > inn.length - 1 ? 0 : i + 1;
-            let im2 = i - 2 < 0 ? (i - 2 < -1 ? inn.length - 2 : inn.length - 1) : i - 2;
-            let ip2 = i + 2 > inn.length - 1 ? (i + 2 > inn.length ? 1 : 0) : i + 2;
-            let im3 = ((i - 3) + (inn.length)) % inn.length;
-            let ip3 = ((i + 3) + (inn.length)) % inn.length;
-            s.line(p[0], p[1], cor[im1][0], cor[im1][1]);
-            s.line(p[0], p[1], cor[ip1][0], cor[ip1][1]);
+            for (let k = 0; k < 3; k++) {
+                s.line(p[0], p[1], cor[((i - (k + 1)) + (inn.length)) % inn.length][0], cor[((i - (k + 1)) + (inn.length)) % inn.length][1]);
+                s.line(p[0], p[1], cor[((i + (k + 1)) + (inn.length)) % inn.length][0], cor[((i + (k + 1)) + (inn.length)) % inn.length][1]);
+            }
+            // let im1 = i - 1 < 0 ? inn.length - 1 : i - 1;
+            // let ip1 = i + 1 > inn.length - 1 ? 0 : i + 1;
+            // let im2 = i - 2 < 0 ? (i - 2 < -1 ? inn.length - 2 : inn.length - 1) : i - 2;
+            // let ip2 = i + 2 > inn.length - 1 ? (i + 2 > inn.length ? 1 : 0) : i + 2;
+            // let im3 = ((i - 3) + (inn.length)) % inn.length;
+            // let ip3 = ((i + 3) + (inn.length)) % inn.length;
+            // s.line(p[0], p[1], cor[im1][0], cor[im1][1]);
+            // s.line(p[0], p[1], cor[ip1][0], cor[ip1][1]);
             // s.line(p[0], p[1], cor[im2][0], cor[im2][1]);
             // s.line(p[0], p[1], cor[ip2][0], cor[ip2][1]);
         });
