@@ -335,8 +335,8 @@ let sketch = s => {
 
         divide(r1, r2) {
             // r1 r2 ratio from left/top
-            let rr1 = s.noise(r1);
-            let rr2 = s.noise(r2);
+            let rr1 = 0.1 + s.noise(r1) * 0.8;
+            let rr2 = 0.1 + s.noise(r2) * 0.8;
             if (this.splitDirection) {
                 //vertical
                 let p1 = findPointOnLine(this.leftTop, this.rightTop, rr1);
