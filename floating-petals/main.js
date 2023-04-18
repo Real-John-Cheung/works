@@ -15,7 +15,8 @@ let sketch = s => {
     let comingCh, nextCh, comingEn, nextEn;
 
     s.preload = () => {
-        chFont = s.loadFont("modified.ttf");
+        //chFont = s.loadFont("modified.ttf");
+        chFont = s.loadFont("genyoelmin.ttf");
         enFont = s.loadFont("NimbusMono-Regular.otf");
         // chFont = s.loadFont("modifiedRe.ttf");
         // enFont = s.loadFont("CourierPrime-Regular.ttf");
@@ -35,14 +36,14 @@ let sketch = s => {
         s.noStroke();
         s.textAlign(s.LEFT, s.TOP);
         chCursor = [0, 0], enCursor = [s.width / 2, engPadding];
-        s.frameRate(60);
+        s.frameRate(4);
         // s.ellipse(0, 0, 5, 5);
         // s.ellipse(s.width/2, 0, 5, 5);
     }
 
-    s.mouseClicked = () => {
-        s.frameRate(4);
-    }
+    // s.mouseClicked = () => {
+    //     s.frameRate(4);
+    // }
 
     s.draw = () => {
         s.textAlign(s.LEFT, s.TOP);
@@ -120,7 +121,7 @@ let sketch = s => {
         }
 
         //ch chaotic
-        if (chChaotic >= 0.18 && chChaotic < 0.5) {
+        if (chChaotic >= 0.2 && chChaotic < 0.5) {
             if (Math.random() < chChaotic / 5 ) {
                 chWarrCursor += Math.floor(-3 + Math.random() * 6);
                 if (chWarrCursor >= chWarr.length) {
@@ -137,7 +138,7 @@ let sketch = s => {
         }
 
         //en chaotic
-        if (enChaotic >= 0.13 && enChaotic < .5) {
+        if (enChaotic >= 0.16 && enChaotic < .5) {
             if (Math.random() < enChaotic / 5) {
                 enWarrCursor += Math.floor(-3 + Math.random() * 6);
                 if (enWarrCursor >= enWarr.length) {
