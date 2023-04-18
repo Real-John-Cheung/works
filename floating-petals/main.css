@@ -1,0 +1,119 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif+HK:wght@400;500;600;700&display=swap'); 
+@font-face {
+    font-family: "Nimbus";
+    src: url("./NimbusMono-Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Nimbus";
+    src: url("./NimbusMono-Bold.otf");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Nimbus";
+    src: url("./NimbusMono-Oblique.otf");
+    font-weight: normal;
+    font-style: oblique;
+}
+@font-face {
+    font-family: "Nimbus";
+    src: url("./NimbusMono-BoldOblique.otf");
+    font-weight: bold;
+    font-style: oblique;
+}
+html, body{
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+    padding-top: 5vh;
+}
+
+.indexM{
+    display: flex;
+    margin-bottom: 1vh;
+    font-size: small;
+}
+
+.en-title{
+    font-family: 'Nimbus','Noto Serif HK', monospace;
+    display: inline-block;
+    width: 50%;
+}
+
+.ch-title{
+    font-family: 'Nimbus','Noto Serif HK', serif;
+    display: inline-block;
+    width: 50%;
+}
+
+#p5-container{
+   aspect-ratio: 16/10;
+   width: 100%;
+   /* display: flex; */
+   /* position: relative; */
+}
+
+#p5-container:fullscreen > canvas{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);     
+}
+
+#p5-container::backdrop{
+    background-color: white;
+}
+
+.content{
+    display: flex;
+}
+
+.chinese{
+    font-family: 'Nimbus','Noto Serif HK', serif;
+    width: 45% ;
+    margin-right: 5%;
+    text-align: justify;
+}
+
+.english{
+    margin-left: 5%;
+    width: 45%;
+    font-family: 'Nimbus','Noto Serif HK', monospace;
+    line-height: 1.1;
+    text-align: justify;
+    /* font-size: small; */
+}
+
+.link{
+    font-family: 'Nimbus','Noto Serif HK', monospace;
+}
+
+.title{
+    font-weight: 700;
+}
+.footnote{
+    margin-bottom: 5vh;
+}
+
+.linki{
+    width: 50%;
+}
+
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+}
