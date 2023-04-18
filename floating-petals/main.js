@@ -5,7 +5,7 @@ const poem_en = "We |are |children |of |our |age |it |is |a |political |age |all
 let sketch = s => {
     const container = document.getElementById("p5-container");
     const noCharacterPerLine = 49;
-    const noLetterPerLine = 83;
+    const noLetterPerLine = 90;
     const noLine = 60;
     let fontSizeCh, fontSizeEn, lineHeight, chTextCursor = 0, enTextCursor = 0, chRoundCount = 0, enRoundCount = 0, chXStep, enXStep, maskAlpha = 0; // int
     let chCursor = [], enCursor = [], chxc = 0, chyc = 0, enxc = 0, enyc = 0;
@@ -17,6 +17,8 @@ let sketch = s => {
     s.preload = () => {
         chFont = s.loadFont("modified.ttf");
         enFont = s.loadFont("NimbusMono-Regular.otf");
+        // chFont = s.loadFont("modifiedRe.ttf");
+        // enFont = s.loadFont("CourierPrime-Regular.ttf");
     }
 
     s.setup = () => {
@@ -26,14 +28,14 @@ let sketch = s => {
         chXStep = Math.floor((s.width / 2) / noCharacterPerLine);
         enXStep = Math.floor((s.width / 2) / noLetterPerLine);
         fontSizeCh = Math.floor((s.width / 2) / noCharacterPerLine);
-        fontSizeEn = fontSizeCh;
+        fontSizeEn = fontSizeCh * 1;
         lineHeight = s.height / noLine;
         engPadding = lineHeight * 0.15;
         s.fill(0);
         s.noStroke();
         s.textAlign(s.LEFT, s.TOP);
         chCursor = [0, 0], enCursor = [s.width / 2, engPadding];
-        s.frameRate(30);
+        s.frameRate(60);
         // s.ellipse(0, 0, 5, 5);
         // s.ellipse(s.width/2, 0, 5, 5);
     }

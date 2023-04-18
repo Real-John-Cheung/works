@@ -40,8 +40,7 @@ html, body{
 
 .indexM{
     display: flex;
-    margin-bottom: 1vh;
-    font-size: small;
+    font-size: large;
 }
 
 .en-title{
