@@ -210,6 +210,10 @@ let sketch = s => {
         chChaotic = chRoundCount  / 100;
         enChaotic = enRoundCount  / 100;
 
+        renderCurrent();
+    }
+
+    renderCurrent = () => { 
         s.push();
         s.fill(255);
         s.rectMode(s.CENTER);
