@@ -24,6 +24,7 @@ let sketch = s => {
     let chFont, enFont;
     let chWarr, enWarr, chWarrCursor = 0, enWarrCursor = 0;
     let comingCh, nextCh, comingEn, nextEn;
+    let ok = false;
 
     let chls = [], enls = [];
 
@@ -43,7 +44,7 @@ let sketch = s => {
         enXStep = (s.width / 2) / (noLetterPerLine + 1.5);
         fontSizeCh = (s.width / 2) / (noCharacterPerLine + 1.5);
         fontSizeEn = fontSizeCh * 1;
-        lineHeight = s.height / (noLine + 4);
+        lineHeight = s.height / (noLine);
         engPadding = lineHeight * 0.15;
         s.fill(0);
         s.noStroke();
@@ -57,7 +58,12 @@ let sketch = s => {
     }
 
     s.mouseClicked = () => {
-        s.frameRate(3.5);
+        if (!ok) {
+            s.frameRate(3.5);
+            ok = true;
+        } else {
+            s.save(canvas, s.frameCount + ".png");
+        }
     }
 
     // s.windowResized = () => {
@@ -196,7 +202,7 @@ let sketch = s => {
                 chCursor[0] = 0;
                 chCursor[1] += lineHeight;
                 //console.log(chyc);
-                if (chyc === 29) chCursor[1] += lineHeight * 4;
+                // if (chyc === 29) chCursor[1] += lineHeight * 4;
                 chxc = 0;
                 chyc++;
             }
@@ -223,7 +229,7 @@ let sketch = s => {
                 enxc = 0;
                 enCursor[0] = s.width / 2;
                 enCursor[1] += lineHeight;
-                if (enyc === 29) enCursor[1] += lineHeight * 4;
+                // if (enyc === 29) enCursor[1] += lineHeight * 4;
                 enyc++
             }
             if (enyc >= noLine) {
@@ -236,7 +242,7 @@ let sketch = s => {
         chChaotic = chRoundCount  / 100;
         enChaotic = enRoundCount  / 100;
 
-        renderCurrent();
+        // renderCurrent();
     }
 
     renderCurrent = () => { 

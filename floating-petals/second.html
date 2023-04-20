@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>流水落花 Floating Petals</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="./second.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="title indexM">
+            <div class="ch-title">流水落花</div>
+            <div class="en-title">Floating Petals</div>
+        </div> -->
+        <div id="p5-container"></div>
+        <!-- <div class="footnote indexM">
+            <div class="link linki">
+                <a href="./about.html">關於作品 / About the work</a>
+            </div>
+            <div class="link linki">
+                <a href="https://johncheung.art" target="_blank">JohnC</a><span style="cursor: default;">　</span>
+            </div>
+        </div> -->
+    </div>
+    <script>
+        const target = document.getElementById("p5-container");
+        const canvass = target.firstElementChild;
+        const ca = new p5(sketch, target);
+        target.addEventListener('dblclick', (event) => {
+            let ok = true
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                try {
+                    target.requestFullscreen();
+                } catch (e) {
+                    try {
+                        target.webkitRequestFullscreen();
+                    } catch (err) {
+                        console.error("fullScreenNotSupported");
+                        ok = false;
+                    }
+                }
+            } else if (document.exitFullscreen || document.webkitExitFullscreen) {
+                try {
+                    document.exitFullscreen();
+                } catch (e) {
+                    try {
+                        document.webkitExitFullscreen();
+                    } catch {
+                        console.error("unknownError");
+                        ok = false
+                    }
+                }
+            }
+        }, false);
+    </script>
+</body>
+
+</html>
