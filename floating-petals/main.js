@@ -50,7 +50,7 @@ let sketch = s => {
         s.textAlign(s.LEFT, s.TOP);
         chCursor = [0, 0], enCursor = [s.width / 2, engPadding];
         //s.frameRate(3.5);
-        s.frameRate(60);
+        s.frameRate(3.5);
         // s.ellipse(0, 0, 5, 5);
         // s.ellipse(s.width/2, 0, 5, 5);
         //applyScaling(container, canvas.canvas);
