@@ -39,7 +39,7 @@
 @font-face {
     font-family: "Genyo";
     src: url("./GenYoMinTW-L.ttf");
-    font-weight: lighter;
+    font-weight: 200;
     font-style: normal;
 }
 @font-face {
