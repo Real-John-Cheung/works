@@ -39,6 +39,7 @@ let sketch = s => {
         chWarr = poem_ch.split("|");
         enWarr = poem_en.split("|");
         canvas = s.createCanvas(container.clientWidth, Math.round(10 * container.clientWidth / 16));
+        //canvas = s.createCanvas(container.clientWidth, Math.round(10 * container.clientWidth / 16), s.SVG);
         chXStep = (s.width / 2) / (noCharacterPerLine + 1.5);
         enXStep = (s.width / 2) / (noLetterPerLine + 1.5);
         fontSizeCh = (s.width / 2) / (noCharacterPerLine + 1.5);
@@ -237,6 +238,7 @@ let sketch = s => {
         enChaotic = enRoundCount  / 100;
 
         renderCurrent();
+        //s.clear();
     }
 
     renderCurrent = () => { 

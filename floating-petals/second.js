@@ -3,7 +3,7 @@ const poem_en_ori = "We are children of our age |it is a political age |All day 
 const poem_ch = "我們|是|時代|的|孩子|這個|時代|是|一個|政治的|時代|所有|你的|我們的|你們的|日常|和|夜間|事務|都是|政治的|事務|你的|基因|有|政治的|過去|你的|皮膚|有|政治的|色彩|你的|眼裏|有|政治的|神情|你|說的|話|有|政治的|回音|橫著|看|豎著|看|都是|政治性|的|甚至|當|你|走入|森林|你|也|踏著|政治的|步伐|走|在|政治的|地面|上|非|政治的|詩|也是|政治的|活著|或是|死亡|這是|個|問題|什麼樣|的|問題|回答|吧|親愛的|這是|個|政治的|問題|你|甚至|不必|身而為人|才能|具有|政治的|意義|你|可以|只是|石油|或者|是|舉行|會議|的|那|張|桌子|人們|橫死|動物|暴斃|房屋|燃燒|就像|在|久遠|以前|不|那麼|政治化|的|時代";
 const poem_en = "We |are |children |of |our |age |it |is |a |political |age |all |affairs |yours |ours |theirs |are |political |affairs |your |genes |have |a |political |past |your |skin |a |political |cast |your |eyes |a |political |slant |So |either |way |you |are |talking |politics |Even |when |you |take |to |the |woods |you |are |taking |political |steps |on |political |grounds |Apolitical |poems |are |also |political |To |be |or |not |to |be |that |is |the |question |it |is |a |question |as |always |of |politics |To |acquire |a |political |meaning |you |do |not |even |have |to |be |human |Raw |material |will |do |or |a |conference |table |People |perished |animals |died |houses |burned |just |as |in |times |immemorial |and |less |political ";
 
-const applyScaling = (parent, children) => { 
+const applyScaling = (parent, children) => {
     children.style.transform = 'scale(1, 1)';
     children.style.transformOrigin = '0 0 '
     let { width: cw, height: ch } = children.getBoundingClientRect();
@@ -39,7 +39,7 @@ let sketch = s => {
     s.setup = () => {
         chWarr = poem_ch.split("|");
         enWarr = poem_en.split("|");
-        canvas = s.createCanvas(container.clientWidth, Math.round(9 * container.clientWidth / 16));
+        canvas = s.createCanvas(container.clientWidth, Math.round(9 * container.clientWidth / 16), s.SVG);
         chXStep = (s.width / 2) / (noCharacterPerLine + 1.5);
         enXStep = (s.width / 2) / (noLetterPerLine + 1.5);
         fontSizeCh = (s.width / 2) / (noCharacterPerLine + 1.5);
@@ -62,7 +62,9 @@ let sketch = s => {
             s.frameRate(3.5);
             ok = true;
         } else {
-            s.save(canvas, s.frameCount + ".png");
+            //s.save(canvas, s.frameCount + ".png");
+            s.save(s.frameCount + ".svg");
+            // downloadSvg(s.frameCount);
         }
     }
 
@@ -115,7 +117,7 @@ let sketch = s => {
         chToWrite = comingCh.split("");
         chWarrCursor++;
 
-        
+
 
         if (s.frameCount % 3 != 0) {
             if (nextEn) {
@@ -137,7 +139,7 @@ let sketch = s => {
             enls.push(comingEn);
             if (enls.length > 30) enls.shift();
         }
-        
+
         if (chWarrCursor >= chWarr.length) {
             chWarrCursor = 0;
             chRoundCount++;
@@ -151,7 +153,7 @@ let sketch = s => {
 
         //ch chaotic
         if (chChaotic >= 0.2 && chChaotic < 0.5) {
-            if (Math.random() < chChaotic / 5 ) {
+            if (Math.random() < chChaotic / 5) {
                 chWarrCursor += Math.floor(-3 + Math.random() * 6);
                 if (chWarrCursor >= chWarr.length) {
                     chWarrCursor -= chWarr.length;
@@ -182,7 +184,7 @@ let sketch = s => {
                 enWarrCursor = Math.floor(Math.random() * enWarr.length);
             }
         }
-        
+
 
         //console.log(enToWrite, chToWrite);
 
@@ -239,20 +241,20 @@ let sketch = s => {
             s.pop();
         });
 
-        chChaotic = chRoundCount  / 100;
-        enChaotic = enRoundCount  / 100;
+        chChaotic = chRoundCount / 100;
+        enChaotic = enRoundCount / 100;
 
         // renderCurrent();
     }
 
-    renderCurrent = () => { 
+    renderCurrent = () => {
 
         s.push();
-        
+
 
         s.fill(255);
         s.rectMode(s.CENTER);
-        s.rect(s.width * 3 / 4, s.height / 2, s.width/2, lineHeight * 4);
+        s.rect(s.width * 3 / 4, s.height / 2, s.width / 2, lineHeight * 4);
         s.fill(0);
         s.textAlign(s.RIGHT, s.CENTER);
         s.textFont(enFont);
@@ -261,7 +263,7 @@ let sketch = s => {
 
         s.fill(255);
         s.rectMode(s.CENTER);
-        s.rect(s.width / 4, s.height / 2, s.width/2, lineHeight * 4);
+        s.rect(s.width / 4, s.height / 2, s.width / 2, lineHeight * 4);
         s.fill(0);
         s.textAlign(s.RIGHT, s.CENTER);
         s.textFont(chFont);
@@ -269,5 +271,22 @@ let sketch = s => {
         s.text(chls.join(""), chXStep * (noCharacterPerLine + 1), s.height / 2);
         //console.log(comingCh);
         s.pop();
+    }
+
+    downloadSvg = (id) => {
+        let svgElement = document.getElementsByTagName('svg')[0];
+        let svg = svgElement.outerHTML;
+        let file = new Blob([svg], { type: 'plain/text' });
+        let a = document.createElement("a"), url = URL.createObjectURL(file);
+
+        a.href = url;
+        a.download = id + '.svg';
+        document.body.appendChild(a);
+        a.click();
+
+        setTimeout(function () {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
     }
 };
