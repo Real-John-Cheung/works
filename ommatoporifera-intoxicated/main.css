@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
+
+body,
+html {
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    background: black;
+}
+
+.sketchcontainer {
+    width: 100vw;
+    height: 100vh;
+    /* margin: auto; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vmin;
+    background: white;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5vmin;
+    background: white;
+}
+
+.subC {
+    width: 100vmin;
+    height: 100vmin;
+    /* background-color: black; */
+    max-width: 1000px;
+    max-height: 1000px;
+}
+
+.sketchcontainer canvas {
+    transform-origin: 0 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+#shadow {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#infoIcon {
+    font-family: 'Fragment Mono', monospace;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 5vmin;
+    height: 5vmin;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    line-height: 5vmin;
+    cursor: pointer;
+    border-radius: 25%;
+}
+
+#invertIcon {
+    font-family: 'Fragment Mono', monospace;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 5vmin;
+    height: 5vmin;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    line-height: 5vmin;
+    cursor: pointer;
+    border-radius: 25%;
+}
+
+#infoIcon * {
+    margin: auto;
+}
+
+#about {
+    font-family: 'Fragment Mono', monospace;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 5%;
+    background: white;
+    color: black;
+    font-size: 12pt;
+}
+
+#about div {
+    width: 80%;
+    margin: 10% auto;
+}
+
+#about a {
+    color: black;
+    text-decoration: underline;
+}
+
+#about a:hover {
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.invert {
+    filter: invert(100%);
+}
+
+.r90 {
+    transform: rotate(90deg);
+}
+.r180 {
+    transform: rotate(180deg);
+}
+.r270 {
+    transform: rotate(270deg);
+}
+
+.f1 {
+    transform: scaleX(-1);
+}
+
+.code-container {
+    margin: auto;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0d1117;
+}
+
+#js{
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+}
+
+#wrapper{
+    display: block;
+    line-height: 150%;
+}
+
+.outer{
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.middle{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@media (orientation:portrait) {
+    .row {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5vmin;
+        background: white;
+    }
+}
