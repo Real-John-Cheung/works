@@ -6,34 +6,34 @@ let physicsScene = {
 }
 const Vector = p5.Vector;
 
-class Rod{
+class Rod {
     /**
      * 
      * @param {Vector} fixedPoint 
      * @param {number} length 
      */
-    constructor(fixedPoint, length){
+    constructor(fixedPoint, length) {
         this.fixedPoint = fixedPoint.copy();
         this.length = length;
     }
 }
 
-class Mass{
-    constructor(radius, m){
+class Mass {
+    constructor(radius, m) {
         this.r = radius;
         this.m = m || this.r * this.r * Math.PI;
         this.loc = new Vector();
     }
 }
 
-class Pendulum{
+class Pendulum {
     /**
      * 
      * @param {Rod} rod 
      * @param {Mass} mass 
      * @param {number} angle 
      */
-    constructor(rod, mass, angle){
+    constructor(rod, mass, angle) {
         this.rod = rod;
         this.mass = mass;
         this.angle = angle;
@@ -41,12 +41,12 @@ class Pendulum{
         this.v = 0; // angular velocity
     }
 
-    updateMassLoc(){
+    updateMassLoc() {
         this.mass.loc.x = this.rod.fixedPoint.x - Math.sin(this.angle) * this.rod.length;
         this.mass.loc.y = this.rod.fixedPoint.y + Math.cos(this.angle) * this.rod.length;
     }
 
-    update(){
+    update() {
         let g = physicsScene.gravity.y;
         let dt = physicsScene.deltaT;
         //angular acceleration for a pendulum
@@ -62,7 +62,7 @@ class Pendulum{
      * 
      * @param {number} color 
      */
-    display(c){
+    display(c) {
         stroke(0);
         line(this.rod.fixedPoint.x, this.rod.fixedPoint.y, this.mass.loc.x, this.mass.loc.y);
         fill(c);
@@ -71,30 +71,30 @@ class Pendulum{
     }
 }
 
-class PBDPendulum{
+class PBDPendulum {
     /**
      * 
      * @param {Rod} rod 
      * @param {Mass} mass 
      * @param {number} angle 
      */
-    constructor(rod, mass, angle){
+    constructor(rod, mass, angle) {
         this.rod = rod;
         this.mass = mass;
         this.mass.loc.x = this.rod.fixedPoint.x - Math.sin(angle) * this.rod.length;
         this.mass.loc.y = this.rod.fixedPoint.y + Math.cos(angle) * this.rod.length;
-        this.v = new Vector();//velocity of the mass
-        this.prevMassLoc = this.mass.loc.copy();
+        this.mass.v = new Vector();//velocity of the mass
+        this.mass.prevLoc = this.mass.loc.copy();
     }
 
-    update(){
+    update() {
         let dt = physicsScene.deltaT / steps;
         for (let step = 0; step < steps; step++) {
-            this.v.y += physicsScene.gravity.y * dt;
-            this.prevMassLoc.x = this.mass.loc.x;
-            this.prevMassLoc.y = this.mass.loc.y;
-            this.mass.loc.x += this.v.x *dt;
-            this.mass.loc.y += this.v.y * dt;
+            this.mass.v.y += physicsScene.gravity.y * dt;
+            this.mass.prevLoc.x = this.mass.loc.x;
+            this.mass.prevLoc.y = this.mass.loc.y;
+            this.mass.loc.x += this.mass.v.x * dt;
+            this.mass.loc.y += this.mass.v.y * dt;
 
             let dir = Vector.sub(this.mass.loc, this.rod.fixedPoint);
             let len = dir.mag();
@@ -104,12 +104,16 @@ class PBDPendulum{
                 this.mass.loc.x += dir.x * lambda;
                 this.mass.loc.y += dir.y * lambda;
             }
-            this.v.x = (this.mass.loc.x - this.prevMassLoc.x) * (1/dt);
-            this.v.y = (this.mass.loc.y - this.prevMassLoc.y) * (1/dt);
+            this.mass.v.x = (this.mass.loc.x - this.mass.prevLoc.x) * (1 / dt);
+            this.mass.v.y = (this.mass.loc.y - this.mass.prevLoc.y) * (1 / dt);
         }
     }
 
-    display(c){
+    /**
+     * 
+     * @param {number} color 
+     */
+    display(c) {
         stroke(0);
         line(this.rod.fixedPoint.x, this.rod.fixedPoint.y, this.mass.loc.x, this.mass.loc.y);
         fill(c);
@@ -120,18 +124,18 @@ class PBDPendulum{
 
 let steps = 1000;
 
-function setup(){
-    createCanvas(600,600);
-    physicsScene.pendulums.push(new Pendulum(new Rod(new Vector(width/2, height/2),250), new Mass(20), -Math.PI / 2));
-    physicsScene.pendulums.push(new PBDPendulum(new Rod(new Vector(width/2, height/2),250), new Mass(10), -Math.PI / 2));
+function setup() {
+    createCanvas(600, 600);
+    physicsScene.pendulums.push(new Pendulum(new Rod(new Vector(width / 2, height / 2), 250), new Mass(20), -Math.PI / 2));
+    physicsScene.pendulums.push(new PBDPendulum(new Rod(new Vector(width / 2, height / 2), 250), new Mass(10), -Math.PI / 2));
     background(255);
     frameRate(60);
 }
 
-function draw(){
+function draw() {
     background(255);
     fill(0);
-    text(steps, 10, 10);
+    text("steps: " + steps, 10, 10);
     physicsScene.pendulums[0].display("red");
     physicsScene.pendulums[0].update();
     physicsScene.pendulums[1].display("green");
@@ -140,6 +144,6 @@ function draw(){
 }
 
 
-function mousePressed(){
+function mousePressed() {
     loop();
 }
