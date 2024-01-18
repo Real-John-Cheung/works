@@ -115,7 +115,7 @@ function rayCasting(startingPoint, direction) {
     let mapX = Math.floor(startingPoint.x / grid.cellSize.x);
     let mapY = Math.floor(startingPoint.y / grid.cellSize.y);
 
-    // length of the ray to next cell boundary (x or y)
+    // length of the ray in different axis (x or y)
     let sideDistX, sideDistY;
 
     // if advance one unit (cell), length increase of the ray
