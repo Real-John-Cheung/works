@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <title>Basic shapes</title>
+    <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+    <script src="https://lygia.xyz/resolve.js"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: black;
+        }
+        main{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        a{
+            color: white;
+            text-decoration: underline;
+        }
+        a:hover{
+            color: gray;
+            text-decoration-thickness: 3px;
+        }
+        .container{
+            width: auto;
+            margin: 50px;
+        }
+        .caption{
+            width: 100%;
+        }
+        .title{
+            color: white;
+            text-align: center;
+            margin: auto;
+            font-size: large;
+            font-weight: bold;
+        }
+        .links{
+            color: white;
+            display: flex;
+            justify-content: space-around;
+        }
+        .links span{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="./line.frag" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">Line</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href="./line.frag">Frag</a></span></div>
+            </div>
+        </div>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="./line2.frag" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">Line with thickness</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href="./line2.frag">Frag</a></span></div>
+            </div>
+        </div>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="./curve.frag" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">curve</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href="./curve.frag">Frag</a></span></div>
+            </div>
+        </div>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="./lydia.frag" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">Using Lydia</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href="./lydia.frag">Frag</a></span></div>
+            </div>
+        </div>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="./bezier1.frag" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">Bezier 1</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href="./bezier1.frag">Frag</a></span></div>
+            </div>
+        </div>
+    </main>
+</body>

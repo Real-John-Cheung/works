@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <title>title</title>
+    <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+    <script src="https://lygia.xyz/resolve.js"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: black;
+            
+        }
+        main{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        a{
+            color: white;
+            text-decoration: underline;
+        }
+        a:hover{
+            color: gray;
+            text-decoration-thickness: 3px;
+        }
+        .container{
+            width: auto;
+            margin: 50px;
+        }
+        .caption{
+            width: 100%;
+        }
+        .title{
+            color: white;
+            text-align: center;
+            margin: auto;
+            font-size: large;
+            font-weight: bold;
+        }
+        .links{
+            color: white;
+            display: flex;
+            justify-content: space-around;
+        }
+        .links span{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <canvas class="glslCanvas" data-fragment-url="" width="500" height="500"></canvas>
+            <div class="caption">
+                <div class="title">Title</div>
+                <div class="links"><span><a href="">Vert</a></span> <span><a href=" ">Frag</a></span></div>
+            </div>
+        </div>
+    </main>
+</body>
